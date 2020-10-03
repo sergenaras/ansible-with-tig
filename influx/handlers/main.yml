@@ -1,0 +1,13 @@
+---
+# handlers file for influx
+- name: Restart Firewall Service
+  service:
+    name: firewalld
+    state: restarted
+    listen: firewalld_restart
+- name: Start Influxdb Service
+  service:
+    name: influxdb
+    state: started
+    enabled: yes
+    listen: influxdb_ok

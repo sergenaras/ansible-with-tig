@@ -1,0 +1,13 @@
+---
+# handlers file for grafana
+- name: Restart Firewalld Service
+  service:
+    name: firewalld
+    state: restarted
+  listen: firewalld_restart
+- name: Start Grafana Service
+  service:
+    name: grafana
+    state: started
+    enabled: yes
+  listen: grafana_ok

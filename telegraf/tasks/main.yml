@@ -1,0 +1,16 @@
+---
+# tasks file for telegraf
+
+
+- name: Copy Telegraf Repo config
+  copy:
+    src: ../files/telegraf.j2
+    dest: /etc/yum.repos.d/influxdb.repo
+    remote_src: no
+- name: Install Telegraf
+  yum:
+    name: telegraf
+    state: latest
+  notify: telegraf_ok
+- name: Add Influxdb database 
+  lineinfile:

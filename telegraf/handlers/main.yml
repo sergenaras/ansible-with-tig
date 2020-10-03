@@ -1,0 +1,9 @@
+---
+# handlers file for telegraf
+
+- name: Start Telegraf Services
+  service:
+    name: telegraf
+    state: started
+    enabled: yes
+    listen: telegraf_ok

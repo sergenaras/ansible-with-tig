@@ -1,0 +1,19 @@
+---
+# tasks file for influx
+- name: Add 8086 port for Firewall
+  firewalld:
+    port: 8086/tcp
+    permanent: yes
+    state: enabled
+  notify: 
+    firewalld_restart
+- name: Download Influxdb 1.2.4 version
+  get_url:
+    url: https://dl.influxdata.com/influxdb/releases/influxdb-1.2.4.x86_64.rpm
+    dest: /tmp/influxdb-1.2.4.x86_64.rpm
+- name: Install Influxdb
+  yum:
+    name: influxdb
+    state: 1.2.4
+  notify:
+    influxdb_ok

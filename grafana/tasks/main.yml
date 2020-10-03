@@ -1,0 +1,22 @@
+---
+# tasks file for grafana
+
+- name: Add 3000 port for Firewall
+  firewalld:
+    port: 3000/tcp
+    permanent: yes
+    state: enabled
+  notify:
+    firewalld_restart
+- name: Copy Repository
+  copy:
+    src: ../files/grafana.j2
+    dest: /etc/yum.repos.d/grafana.repo
+    remote_src: no 
+- name: Install Grafana 
+  yum:
+    name: grafana
+    state: latest
+  notify:
+    grafana_ok
+
